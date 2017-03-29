@@ -110,11 +110,10 @@ std::string Guild::AttackWithWarriors()
 
 std::string Guild::AttackWithAdventurers(int choice)
 {
-
-	string output = "You command your warriors to attack! \n";
-
 	if (choice == 1)
 	{
+		string output = "You command your mages to attack! \n";
+
 		if (mageCount > 0) {
 			for (auto adventurers : _adventurers) 
 			{
@@ -126,6 +125,8 @@ std::string Guild::AttackWithAdventurers(int choice)
 	}
 	else if (choice == 2)
 	{
+		string output = "You command your rangerss to attack! \n";
+
 		if (ranCount > 0) {
 			for (auto adventurers : _adventurers)
 			{
@@ -137,6 +138,8 @@ std::string Guild::AttackWithAdventurers(int choice)
 	}
 	else if (choice == 3)
 	{
+		string output = "You command your warriors to attack! \n";
+
 		if (warCount > 0) {
 			for (auto adventurers : _adventurers)
 			{
@@ -148,6 +151,8 @@ std::string Guild::AttackWithAdventurers(int choice)
 	}
 	else if (choice == 4)
 	{
+		string output = "You command your paladins to attack! \n";
+
 		if (palCount > 0) {
 			for (auto adventurers : _adventurers)
 			{
@@ -159,12 +164,11 @@ std::string Guild::AttackWithAdventurers(int choice)
 	}
 	else
 	{
-		std::string output = "You command everyone to attack! \n";
+		string output = "You command everyone to attack! \n";
+		
+		for (auto adventurers : _adventurers)
+			output += adventurers->Attack() + "\n";
 
-		output += AttackWithMages();
-		output += AttackWithPaladins();
-		output += AttackWithRangers();
-		output += AttackWithWarriors();
 		return output;
 	}
 }
