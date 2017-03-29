@@ -8,7 +8,12 @@ Guild::~Guild()
 {
 }
 
-void Guild::AddMage(std::string name)
+void Guild::AddAdventurer(shared_ptr<Adventurer> adventurer)
+{
+	_adventurers.push_back(adventurer);
+}
+
+/*void Guild::AddMage(std::string name)
 {
 	auto magePtr = std::make_shared<Mage>(name);
 	_mages.push_back(magePtr);
@@ -31,18 +36,32 @@ void Guild::AddWarrior(std::string name)
 	auto warrior = std::make_shared<Warrior>(name);
 	_warriors.push_back(warrior);
 }
+*/
 
 std::string Guild::GetInfo()
 {
 	std::string output = "Your guild has: \n";	
 
-	output += _mages.size()		> 0 ? std::to_string(_mages.size()) + " mages\n" : "No mages!\n";
-	output += _rangers.size()	> 0 ? std::to_string(_rangers.size()) + " rangers\n" : "No rangers!\n";
-	output += _warriors.size()	> 0 ? std::to_string(_warriors.size()) + " warriors\n" : "No warriors!\n";
-	output += _paladins.size()	> 0 ? std::to_string(_paladins.size()) + " paladins\n" : "No paladins!\n";
+	
+	for (auto adventurers : _adventurers)
+	{
+		if (adventurers->getClass() == "Warrior")
+			warCount++;
+		else if (adventurers->getClass() == "Mage")
+			mageCount++;
+		else if (adventurers->getClass() == "Ranger")
+			ranCount++;
+		else
+			palCount++;
+	}
+
+	output += mageCount	> 0 ? to_string(mageCount) + " mages\n" : "No mages!\n";
+	output += ranCount	> 0 ? to_string(ranCount) + " rangers\n" : "No rangers!\n";
+	output += warCount	> 0 ? to_string(warCount) + " warriors\n" : "No warriors!\n";
+	output += palCount	> 0 ? to_string(palCount) + " paladins\n" : "No paladins!\n";
 	return output;
 }
-
+/*
 std::string Guild::AttackWithMages()
 {
 	std::string output = "You command your mages to attack! \n";
@@ -78,21 +97,74 @@ std::string Guild::AttackWithRangers()
 
 std::string Guild::AttackWithWarriors()
 {
-	std::string output = "You command your warriors to attack! \n";
-	if (_warriors.size() > 0) {
-		for (auto warrior : _warriors) {
-			output += warrior->Attack() + "\n";
+	string output = "You command your warriors to attack! \n";
+	
+	if (warCount > 0) {
+		for (auto adventurers: _adventurers) {
+			output += adventurers->Attack() + "\n";
 		}
 	}
 	return output;
 }
+*/
 
-std::string Guild::AttackWithAllAdventurers()
+std::string Guild::AttackWithAdventurers(int choice)
 {
-	std::string output = "You command everyone to attack! \n";
-	output += AttackWithMages();
-	output += AttackWithPaladins();
-	output += AttackWithRangers();
-	output += AttackWithWarriors();
-	return output;
+
+	string output = "You command your warriors to attack! \n";
+
+	if (choice == 1)
+	{
+		if (mageCount > 0) {
+			for (auto adventurers : _adventurers) 
+			{
+				if (adventurers->getClass() == "Mage")
+					output += adventurers->Attack() + "\n";
+			}
+		}
+		return output;
+	}
+	else if (choice == 2)
+	{
+		if (ranCount > 0) {
+			for (auto adventurers : _adventurers)
+			{
+				if (adventurers->getClass() == "Ranger")
+					output += adventurers->Attack() + "\n";
+			}
+		}
+		return output;
+	}
+	else if (choice == 3)
+	{
+		if (warCount > 0) {
+			for (auto adventurers : _adventurers)
+			{
+				if (adventurers->getClass() == "Warrior")
+					output += adventurers->Attack() + "\n";
+			}
+		}
+		return output;
+	}
+	else if (choice == 4)
+	{
+		if (palCount > 0) {
+			for (auto adventurers : _adventurers)
+			{
+				if (adventurers->getClass() == "Paladin")
+					output += adventurers->Attack() + "\n";
+			}
+		}
+		return output;
+	}
+	else
+	{
+		std::string output = "You command everyone to attack! \n";
+
+		output += AttackWithMages();
+		output += AttackWithPaladins();
+		output += AttackWithRangers();
+		output += AttackWithWarriors();
+		return output;
+	}
 }
