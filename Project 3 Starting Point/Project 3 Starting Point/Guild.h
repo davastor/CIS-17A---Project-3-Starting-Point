@@ -12,10 +12,10 @@ using namespace std;
 class Guild
 {
 private:
-	int mageCount;
-	int warCount;
-	int palCount;
-	int ranCount;
+	int mageCount=0;
+	int warCount=0;
+	int palCount=0;
+	int ranCount=0;
 
 	vector <shared_ptr<Adventurer>> _adventurers;
 	//std::vector<std::shared_ptr<Mage>> _mages;
