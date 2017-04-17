@@ -31,17 +31,17 @@ public:
 
 	std::string GetName() const { return _name; }
 	void AddAdventurer(shared_ptr<Adventurer> adventurer);
-	void AddMage(std::string name);
+	/*void AddMage(std::string name);
 	void AddPaladin(std::string name);
 	void AddRanger(std::string name);
-	void AddWarrior(std::string name);
+	void AddWarrior(std::string name);*/
 
 	std::string GetInfo();
 
-	std::string AttackWithMages();
+	/*std::string AttackWithMages();
 	std::string AttackWithPaladins();
 	std::string AttackWithRangers();
-	std::string AttackWithWarriors();
+	std::string AttackWithWarriors();*/
 	std::string AttackWithAdventurers(int choice);
 };
 

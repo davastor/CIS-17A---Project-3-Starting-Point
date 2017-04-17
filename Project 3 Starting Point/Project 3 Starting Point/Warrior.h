@@ -10,6 +10,6 @@ public:
 	~Warrior();
 
 	//std::string GetName() const { return _name; }
-	//std::string Attack() { return getName() + " shouts 'DO YOU LIKE MY SWORD SWORD SWORD MY DIAMOND SWORD!"; }
+	std::string Attack() { return getName() + " shouts 'DO YOU LIKE MY SWORD SWORD SWORD MY DIAMOND SWORD!"; }
 };
 

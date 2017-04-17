@@ -10,7 +10,7 @@ private:
 public:
 	string getName() { return _name; }
 	string getClass() { return _class; }
-	string Attack();
+	virtual string Attack();
 
 	//string Attack() { return _name; }
 
