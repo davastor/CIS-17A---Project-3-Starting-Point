@@ -12,7 +12,6 @@ public:
 	string getClass() { return _class; }
 	virtual string Attack();
 
-	//string Attack() { return _name; }
 
 	Adventurer(string name, string classType);
 	~Adventurer();
